@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raama Ganesh K — Systems & Software Engineer</title>
+  
+  <!-- Apple System Font Fallback & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'SFMono-Regular', 'Menlo', 'monospace'],
+          },
+          colors: {
+            apple: {
+              black: '#000000',
+              space: '#08080a',
+              card: '#0f1015',
+              surface: '#15161e',
+              border: 'rgba(255, 255, 255, 0.08)',
+              borderHover: 'rgba(255, 255, 255, 0.22)',
+              subtext: '#86868b',
+              text: '#f5f5f7',
+              blue: '#2997ff',
+              emerald: '#30d158',
+              orange: '#ff9f0a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Apple-grade Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #222226;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3a3a40;
+    }
+
+    /* Apple Ultra-frosted Glass */
+    .apple-glass {
+      background: rgba(15, 16, 21, 0.72);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .apple-dock {
+      background: rgba(20, 20, 25, 0.78);
+      backdrop-filter: blur(30px) saturate(190%);
+      -webkit-backdrop-filter: blur(30px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .text-gradient-silver {
+      background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-subtle {
+      background: linear-gradient(180deg, #ECECF0 0%, #86868B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Ambient Subtle Glows */
+    .ambient-glow {
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(41, 151, 255, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events-none;
+      z-index: 0;
+    }
+
+    /* Dynamic Island Pill Transition */
+    #dynamic-island {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body class="bg-black text-apple-text font-sans antialiased selection:bg-apple-blue selection:text-white min-h-screen relative overflow-x-hidden pb-32">
+
+  <!-- Apple Ambient Lighting -->
+  <div class="ambient-glow top-0 left-1/2 -translate-x-1/2"></div>
+  <div class="ambient-glow top-[40%] right-[-100px] bg-[radial-gradient(circle,_rgba(48,209,88,0.03)_0%,_rgba(0,0,0,0)_70%)]"></div>
+
+  <!-- APPLE-STYLE DYNAMIC ISLAND NOTIFICATION PILL -->
+  <aside aria-label="Notifications" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+    <div id="dynamic-island" class="h-8 min-w-[190px] px-3.5 rounded-full bg-black/90 border border-white/15 backdrop-blur-xl shadow-2xl flex items-center justify-between gap-3 text-xs font-mono text-zinc-300 opacity-0 -translate-y-4 pointer-events-auto">
+      <div class="flex items-center gap-2">
+        <span id="island-dot" class="w-2 h-2 rounded-full bg-apple-emerald animate-pulse"></span>
+        <span id="island-text" class="text-[11px] font-medium tracking-tight">System Ready</span>
+      </div>
+      <span class="text-[10px] text-zinc-500 font-sans">ESC to close</span>
+    </div>
+  </aside>
+
+  <!-- TOP MINIMAL NAVIGATION -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-black/60 border-b border-white/[0.06] transition-all">
+    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-6 h-6 rounded-md bg-white text-black flex items-center justify-center font-bold text-xs font-mono transition-transform group-hover:scale-105">
+          R
+        </div>
+        <span class="text-sm font-semibold tracking-tight text-white/90 group-hover:text-white transition-colors">
+          Raama Ganesh K
+        </span>
+      </a>
+
+      <!-- Quick Social Icons -->
+      <nav aria-label="Social links" class="flex items-center gap-4 text-xs font-mono text-zinc-400">
+        <a href="https://leetcode.com/u/Raamaganesh/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1.5" title="LeetCode Profile">
+          <i class="fa-solid fa-code text-[11px] text-apple-orange"></i>
+          <span class="hidden sm:inline">LeetCode</span>
+        </a>
+        <a href="https://www.linkedin.com/in/raama-ganesh-k-2025becse253/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1.5" title="LinkedIn Profile">
+          <i class="fa-brands fa-linkedin-in text-[11px] text-apple-blue"></i>
+          <span class="hidden sm:inline">LinkedIn</span>
+        </a>
+        <button onclick="copyEmailToClipboard()" class="hover:text-white transition-colors flex items-center gap-1.5 text-zinc-300" title="Click to copy email">
+          <i class="fa-regular fa-envelope text-[11px] text-apple-emerald"></i>
+          <span>Email</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN SCROLL CONTAINER -->
+  <main class="max-w-5xl mx-auto px-6 pt-16 sm:pt-24 space-y-36 relative z-10">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="space-y-10 text-center sm:text-left pt-6">
+      <!-- Status Chip -->
+      <div class="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-zinc-900/90 border border-white/10 text-xs text-zinc-300 font-mono">
+        <span class="w-1.5 h-1.5 rounded-full bg-apple-emerald animate-ping"></span>
+        <span class="text-zinc-200">SRM Easwari Engineering College</span>
+        <span class="text-zinc-600">•</span>
+        <span class="text-apple-subtext font-normal">2025 – 2029 (2nd Year)</span>
+      </div>
+
+      <!-- Headline -->
+      <div class="space-y-4 max-w-4xl">
+        <h1 class="text-5xl sm:text-7xl font-bold tracking-tight text-gradient-silver leading-[1.08]">
+          Engineered for throughput.<br>Designed with restraint.
+        </h1>
+        <p class="text-lg sm:text-2xl text-zinc-400 font-normal leading-relaxed max-w-3xl">
+          I'm <span class="text-white font-medium">Raama Ganesh K</span>. Building resilient distributed backends, disk storage engines, and high-concurrency systems.
+        </p>
+      </div>
+
+      <!-- Hero Spec Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/[0.08]">
+        <div class="py-3">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-apple-subtext">Discipline</div>
+          <div class="text-sm font-semibold text-zinc-200 mt-1">B.Tech CSE Core</div>
+        </div>
+        <div class="py-3">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-apple-subtext">Graduation</div>
+          <div class="text-sm font-semibold text-zinc-200 mt-1">2025 – 2029</div>
+        </div>
+        <div class="py-3">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-apple-subtext">Competitive Track</div>
+          <div class="text-sm font-semibold text-apple-emerald mt-1">LeetCode Daily</div>
+        </div>
+        <div class="py-3">
+          <div class="text-[11px] font-mono uppercase tracking-wider text-apple-subtext">Core Architecture</div>
+          <div class="text-sm font-semibold text-apple-blue mt-1">Distributed & Low-Latency</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCROLLYTELLING SHOWCASE: FEATURED ENGINEERING BUILDS -->
+    <section id="work" class="space-y-12">
+      <div class="space-y-2">
+        <div class="text-xs font-mono uppercase tracking-widest text-apple-blue">System Case Studies</div>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Engineered Systems</h2>
+        <p class="text-sm text-apple-subtext">Deep-dives into concurrency patterns, memory paging, and asynchronous execution pipelines.</p>
+      </div>
+
+      <!-- Scrollytelling Narrative Cards -->
+      <div class="space-y-8">
+
+        <!-- PROJECT 1: DISTRIBUTED TASK QUEUE -->
+        <article class="apple-glass rounded-3xl p-6 sm:p-10 border border-white/10 hover:border-white/20 transition-all">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex items-center gap-3">
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-apple-blue/10 text-apple-blue border border-apple-blue/20">Distributed Queue</span>
+                <span class="text-xs font-mono text-zinc-500">Benchmark: 1,200 ops/sec</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white tracking-tight">Distributed Task Queue & Scheduler</h3>
+              <p class="text-sm text-zinc-300 leading-relaxed">
+                Asynchronous background job execution framework engineered to prevent worker starvation and process heavy bursts. Leverages Redis atomic primitives with exponential backpressure, dead-letter retry queues, and PostgreSQL transaction log auditing.
+              </p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06]">
+                  <div class="text-[10px] font-mono text-zinc-500">THROUGHPUT</div>
+                  <div class="text-base font-bold text-white font-mono mt-0.5">1k+ jobs/s</div>
+                </div>
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06]">
+                  <div class="text-[10px] font-mono text-zinc-500">P99 LATENCY</div>
+                  <div class="text-base font-bold text-apple-emerald font-mono mt-0.5">&lt; 1.8ms</div>
+                </div>
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06] col-span-2 sm:col-span-1">
+                  <div class="text-[10px] font-mono text-zinc-500">GUARANTEE</div>
+                  <div class="text-base font-bold text-zinc-200 font-mono mt-0.5">At-Least-Once</div>
+                </div>
+              </div>
+
+              <!-- Tech Pills -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Java 21</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Spring Boot</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Redis Pub/Sub</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">PostgreSQL</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Docker</span>
+              </div>
+            </div>
+
+            <!-- Interactive Architecture Trigger Box -->
+            <div class="lg:col-span-5 w-full flex flex-col justify-between p-6 rounded-2xl bg-black/60 border border-white/10 space-y-5">
+              <div class="space-y-2">
+                <div class="text-xs font-mono text-zinc-400 flex items-center justify-between">
+                  <span>SYSTEM BLUEPRINT</span>
+                  <i class="fa-solid fa-cube text-apple-blue"></i>
+                </div>
+                <div class="font-mono text-xs text-zinc-300 p-3 rounded-xl bg-zinc-950 border border-white/[0.05] leading-relaxed">
+                  Producer ──> Redis FIFO Queue<br>
+                  &nbsp;&nbsp;├── Distributed Worker Pool<br>
+                  &nbsp;&nbsp;├── Heartbeat Sentinel Check<br>
+                  &nbsp;&nbsp;└── Dead-Letter Queue / DLQ
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button onclick="openSpecModal('taskQueue')" class="flex-1 py-2.5 px-4 rounded-xl bg-white text-black font-semibold text-xs transition-transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                  <span>Inspect Spec</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </button>
+                <a href="https://github.com/RaamaGanesh" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl border border-white/15 hover:border-white/30 text-zinc-300 hover:text-white transition-colors" title="Source Code">
+                  <i class="fa-brands fa-github text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 2: LSM-TREE KEY-VALUE ENGINE -->
+        <article class="apple-glass rounded-3xl p-6 sm:p-10 border border-white/10 hover:border-white/20 transition-all">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex items-center gap-3">
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-apple-emerald/10 text-apple-emerald border border-apple-emerald/20">Storage Internals</span>
+                <span class="text-xs font-mono text-zinc-500">Sequential I/O Optimization</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white tracking-tight">Concurrent Key-Value Storage Engine</h3>
+              <p class="text-sm text-zinc-300 leading-relaxed">
+                Persistent key-value store modeled on Log-Structured Merge-Trees (LSM). Converts random disk mutations into high-speed append-only operations using Write-Ahead Logging (WAL) and memory SkipLists flushed into immutable SSTables.
+              </p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06]">
+                  <div class="text-[10px] font-mono text-zinc-500">I/O STRATEGY</div>
+                  <div class="text-base font-bold text-white font-mono mt-0.5">Sequential</div>
+                </div>
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06]">
+                  <div class="text-[10px] font-mono text-zinc-500">CRASH RECOVERY</div>
+                  <div class="text-base font-bold text-apple-emerald font-mono mt-0.5">WAL Replay</div>
+                </div>
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06] col-span-2 sm:col-span-1">
+                  <div class="text-[10px] font-mono text-zinc-500">PROBING</div>
+                  <div class="text-base font-bold text-zinc-200 font-mono mt-0.5">Bloom Filters</div>
+                </div>
+              </div>
+
+              <!-- Tech Pills -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">C++17</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">gRPC</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Write-Ahead Log</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">SSTables</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Pthreads</span>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 w-full flex flex-col justify-between p-6 rounded-2xl bg-black/60 border border-white/10 space-y-5">
+              <div class="space-y-2">
+                <div class="text-xs font-mono text-zinc-400 flex items-center justify-between">
+                  <span>STORAGE FLOW</span>
+                  <i class="fa-solid fa-hard-drive text-apple-emerald"></i>
+                </div>
+                <div class="font-mono text-xs text-zinc-300 p-3 rounded-xl bg-zinc-950 border border-white/[0.05] leading-relaxed">
+                  put(k, v) ──> Append to Disk WAL<br>
+                  &nbsp;&nbsp;├── Insert to MemTable (RAM)<br>
+                  &nbsp;&nbsp;├── Threshold Hit -> Flush SSTable<br>
+                  &nbsp;&nbsp;└── Level Compaction Pass
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button onclick="openSpecModal('kvStore')" class="flex-1 py-2.5 px-4 rounded-xl bg-white text-black font-semibold text-xs transition-transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                  <span>Inspect Spec</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </button>
+                <a href="https://github.com/RaamaGanesh" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl border border-white/15 hover:border-white/30 text-zinc-300 hover:text-white transition-colors" title="Source Code">
+                  <i class="fa-brands fa-github text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 3: RELATIONAL INDEXER & B-TREE BUFFER MANAGER -->
+        <article class="apple-glass rounded-3xl p-6 sm:p-10 border border-white/10 hover:border-white/20 transition-all">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex items-center gap-3">
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-purple-500/10 text-purple-400 border border-purple-500/20">Database Kernel</span>
+                <span class="text-xs font-mono text-zinc-500">4KB Slotted Pages</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white tracking-tight">Relational Indexer & B+ Tree Buffer Manager</h3>
+              <p class="text-sm text-zinc-300 leading-relaxed">
+                Database storage engine prototype featuring slotted page serialization, clock-replacement page evictions, and balanced B+ Tree traversal with lock-crabbing concurrency for multi-threaded scan operations.
+              </p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06]">
+                  <div class="text-[10px] font-mono text-zinc-500">PAGE SIZE</div>
+                  <div class="text-base font-bold text-white font-mono mt-0.5">4,096 Bytes</div>
+                </div>
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06]">
+                  <div class="text-[10px] font-mono text-zinc-500">EVICTION</div>
+                  <div class="text-base font-bold text-purple-400 font-mono mt-0.5">Clock Sweep</div>
+                </div>
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06] col-span-2 sm:col-span-1">
+                  <div class="text-[10px] font-mono text-zinc-500">QUERY TYPE</div>
+                  <div class="text-base font-bold text-zinc-200 font-mono mt-0.5">B+ Range Scans</div>
+                </div>
+              </div>
+
+              <!-- Tech Pills -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Java</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">B+ Tree</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Buffer Pool</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Disk I/O</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Concurrency</span>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 w-full flex flex-col justify-between p-6 rounded-2xl bg-black/60 border border-white/10 space-y-5">
+              <div class="space-y-2">
+                <div class="text-xs font-mono text-zinc-400 flex items-center justify-between">
+                  <span>PAGING ARCHITECTURE</span>
+                  <i class="fa-solid fa-layer-group text-purple-400"></i>
+                </div>
+                <div class="font-mono text-xs text-zinc-300 p-3 rounded-xl bg-zinc-950 border border-white/[0.05] leading-relaxed">
+                  Query Execution Engine<br>
+                  &nbsp;&nbsp;└── Buffer Manager (Frame Pool)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── Hit: Pin Page Counter++<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Miss: Evict via Clock -> Disk
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button onclick="openSpecModal('bTreeIndexer')" class="flex-1 py-2.5 px-4 rounded-xl bg-white text-black font-semibold text-xs transition-transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                  <span>Inspect Spec</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </button>
+                <a href="https://github.com/RaamaGanesh" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl border border-white/15 hover:border-white/30 text-zinc-300 hover:text-white transition-colors" title="Source Code">
+                  <i class="fa-brands fa-github text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 4: ENTERPRISE PORTAL & AUTH ENGINE -->
+        <article class="apple-glass rounded-3xl p-6 sm:p-10 border border-white/10 hover:border-white/20 transition-all">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-7 space-y-5">
+              <div class="flex items-center gap-3">
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-apple-orange/10 text-apple-orange border border-apple-orange/20">Full-Stack & Security</span>
+                <span class="text-xs font-mono text-zinc-500">Role-Based Access Control</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white tracking-tight">IET Connect Enterprise Portal</h3>
+              <p class="text-sm text-zinc-300 leading-relaxed">
+                Full-stack organizational portal engineered for secure member authentication, role-based resource permissions (RBAC), immutable activity audit logs, and RESTful CRUD endpoints on PostgreSQL.
+              </p>
+              
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06]">
+                  <div class="text-[10px] font-mono text-zinc-500">SECURITY</div>
+                  <div class="text-base font-bold text-white font-mono mt-0.5">JWT / RBAC</div>
+                </div>
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06]">
+                  <div class="text-[10px] font-mono text-zinc-500">AUDIT LOGGING</div>
+                  <div class="text-base font-bold text-apple-orange font-mono mt-0.5">PostgreSQL</div>
+                </div>
+                <div class="p-3 rounded-xl bg-black/40 border border-white/[0.06] col-span-2 sm:col-span-1">
+                  <div class="text-[10px] font-mono text-zinc-500">FRONTEND</div>
+                  <div class="text-base font-bold text-zinc-200 font-mono mt-0.5">Responsive</div>
+                </div>
+              </div>
+
+              <!-- Tech Pills -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">React.js</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Node.js</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">Express</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">PostgreSQL</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900 text-zinc-300 border border-white/5">REST API</span>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5 w-full flex flex-col justify-between p-6 rounded-2xl bg-black/60 border border-white/10 space-y-5">
+              <div class="space-y-2">
+                <div class="text-xs font-mono text-zinc-400 flex items-center justify-between">
+                  <span>ACCESS FLOW</span>
+                  <i class="fa-solid fa-shield-halved text-apple-orange"></i>
+                </div>
+                <div class="font-mono text-xs text-zinc-300 p-3 rounded-xl bg-zinc-950 border border-white/[0.05] leading-relaxed">
+                  Client Request ──> JWT Auth Guard<br>
+                  &nbsp;&nbsp;├── RBAC Permission Validator<br>
+                  &nbsp;&nbsp;├── Controller Execution<br>
+                  &nbsp;&nbsp;└── Async Immutable Audit Record
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <button onclick="openSpecModal('ietPortal')" class="flex-1 py-2.5 px-4 rounded-xl bg-white text-black font-semibold text-xs transition-transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                  <span>Inspect Spec</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </button>
+                <a href="https://github.com/RaamaGanesh" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl border border-white/15 hover:border-white/30 text-zinc-300 hover:text-white transition-colors" title="Source Code">
+                  <i class="fa-brands fa-github text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- TECH SPECS / BENTO MATRIX (APPLE TECH SPECS STYLE) -->
+    <section id="specs" class="space-y-12">
+      <div class="space-y-2">
+        <div class="text-xs font-mono uppercase tracking-widest text-apple-subtext">Technical Specifications</div>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Engineering Architecture Matrix</h2>
+        <p class="text-sm text-apple-subtext">Comprehensive capabilities structured by system layers.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- SPEC BLOCK 1: CORE LANGUAGES -->
+        <div class="apple-glass rounded-3xl p-8 border border-white/10 space-y-6">
+          <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
+            <span class="text-xs font-mono uppercase tracking-wider text-apple-subtext">01 / Foundation</span>
+            <span class="text-xs font-mono text-apple-emerald">Primary Focus</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Programming Languages</h3>
+          
+          <div class="space-y-4 text-sm">
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Java</span>
+              <span class="text-xs font-mono text-zinc-400">Core OOP, Concurrency, Spring Boot</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">C++</span>
+              <span class="text-xs font-mono text-zinc-400">STL, Memory Management, Systems</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Python</span>
+              <span class="text-xs font-mono text-zinc-400">Algorithms, Scripting, Automation</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">SQL</span>
+              <span class="text-xs font-mono text-zinc-400">Subqueries, Window Functions, DDL/DML</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">C</span>
+              <span class="text-xs font-mono text-zinc-400">Pointers, POSIX, Low-Level I/O</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-medium text-zinc-200">JavaScript</span>
+              <span class="text-xs font-mono text-zinc-400">ES6+, Asynchronous Event Loop</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPEC BLOCK 2: BACKEND & DISTRIBUTED SYSTEMS -->
+        <div class="apple-glass rounded-3xl p-8 border border-white/10 space-y-6">
+          <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
+            <span class="text-xs font-mono uppercase tracking-wider text-apple-subtext">02 / Infrastructure</span>
+            <span class="text-xs font-mono text-apple-blue">Runtime & Storage</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Backend & Distributed Stack</h3>
+          
+          <div class="space-y-4 text-sm">
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Spring Boot</span>
+              <span class="text-xs font-mono text-zinc-400">RESTful Microservices, Dependency Injection</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Node.js / Express</span>
+              <span class="text-xs font-mono text-zinc-400">Non-blocking APIs, Authentication</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Redis</span>
+              <span class="text-xs font-mono text-zinc-400">In-Memory Caching, Atomic Counters, Queues</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">PostgreSQL & MySQL</span>
+              <span class="text-xs font-mono text-zinc-400">ACID Transactions, Schema Normalization</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Docker</span>
+              <span class="text-xs font-mono text-zinc-400">Containerization & Compose Orchestration</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-medium text-zinc-200">Git & Linux CLI</span>
+              <span class="text-xs font-mono text-zinc-400">Version Control, Shell Scripting, POSIX</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPEC BLOCK 3: COMPUTER SCIENCE FUNDAMENTALS -->
+        <div class="apple-glass rounded-3xl p-8 border border-white/10 space-y-6">
+          <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
+            <span class="text-xs font-mono uppercase tracking-wider text-apple-subtext">03 / Theory</span>
+            <span class="text-xs font-mono text-purple-400">CS Core</span>
+          </div>
+          <h3 class="text-xl font-bold text-white">Algorithms & Systems Theory</h3>
+          
+          <div class="space-y-4 text-sm">
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Data Structures</span>
+              <span class="text-xs font-mono text-zinc-400">Trees, Graphs, Heaps, Hash Tables</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Algorithmic Design</span>
+              <span class="text-xs font-mono text-zinc-400">Dynamic Programming, DFS/BFS, Greedy</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Database Internals</span>
+              <span class="text-xs font-mono text-zinc-400">B+ Trees, LSM-Trees, Write-Ahead Logs</span>
+            </div>
+            <div class="flex items-center justify-between pb-3 border-b border-white/[0.04]">
+              <span class="font-medium text-zinc-200">Operating Systems</span>
+              <span class="text-xs font-mono text-zinc-400">Threads, Concurrency Locks, Virtual Memory</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-medium text-zinc-200">Computer Networks</span>
+              <span class="text-xs font-mono text-zinc-400">TCP/IP, Sockets, HTTP/2, REST Standards</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SPEC BLOCK 4: VERIFIED PROFILES & COMPETITIVE -->
+        <div class="apple-glass rounded-3xl p-8 border border-white/10 space-y-6 flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between border-b border-white/[0.08] pb-4">
+              <span class="text-xs font-mono uppercase tracking-wider text-apple-subtext">04 / Verification</span>
+              <span class="text-xs font-mono text-apple-orange">Active Practice</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Platforms & Proof of Work</h3>
+
+            <div class="space-y-3">
+              <a href="https://leetcode.com/u/Raamaganesh/" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl bg-black/50 border border-white/10 hover:border-apple-orange/40 transition-colors flex items-center justify-between group">
+                <div class="flex items-center gap-3">
+                  <i class="fa-solid fa-code text-apple-orange text-lg"></i>
+                  <div>
+                    <div class="text-sm font-semibold text-white group-hover:text-apple-orange transition-colors">LeetCode Handle</div>
+                    <div class="text-xs font-mono text-zinc-400">@Raamaganesh</div>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-zinc-500 group-hover:text-white transition-colors"></i>
+              </a>
+
+              <a href="https://www.linkedin.com/in/raama-ganesh-k-2025becse253/" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl bg-black/50 border border-white/10 hover:border-apple-blue/40 transition-colors flex items-center justify-between group">
+                <div class="flex items-center gap-3">
+                  <i class="fa-brands fa-linkedin-in text-apple-blue text-lg"></i>
+                  <div>
+                    <div class="text-sm font-semibold text-white group-hover:text-apple-blue transition-colors">LinkedIn Network</div>
+                    <div class="text-xs font-mono text-zinc-400">Raama Ganesh K</div>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-zinc-500 group-hover:text-white transition-colors"></i>
+              </a>
+
+              <a href="https://github.com/RaamaGanesh" target="_blank" rel="noopener noreferrer" class="p-3.5 rounded-2xl bg-black/50 border border-white/10 hover:border-white/30 transition-colors flex items-center justify-between group">
+                <div class="flex items-center gap-3">
+                  <i class="fa-brands fa-github text-white text-lg"></i>
+                  <div>
+                    <div class="text-sm font-semibold text-white group-hover:text-zinc-300 transition-colors">GitHub Workspace</div>
+                    <div class="text-xs font-mono text-zinc-400">@RaamaGanesh</div>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-zinc-500 group-hover:text-white transition-colors"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-white/[0.06] text-xs font-mono text-zinc-400">
+            Current Focus: Graph traversals, memory-bounded concurrency, dynamic programming.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACADEMIC MILESTONES (APPLE EDUCATION BLOCK) -->
+    <section id="education" class="space-y-8">
+      <div class="space-y-2">
+        <div class="text-xs font-mono uppercase tracking-widest text-apple-subtext">Academic Credentials</div>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Institutional Foundation</h2>
+      </div>
+
+      <div class="apple-glass rounded-3xl p-8 sm:p-10 border border-white/10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-white/[0.08]">
+          <div class="space-y-1">
+            <h3 class="text-2xl font-bold text-white">SRM Easwari Engineering College</h3>
+            <p class="text-base text-apple-emerald font-medium">Bachelor of Technology — Computer Science & Engineering</p>
+          </div>
+          <div class="self-start sm:self-auto px-4 py-2 rounded-full bg-zinc-900 border border-white/10 text-xs font-mono text-zinc-200">
+            2025 — 2029 • Currently 2nd Year
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 text-sm">
+          <div class="space-y-2">
+            <div class="text-xs font-mono uppercase text-apple-subtext">Campus & Location</div>
+            <p class="text-zinc-300 font-mono text-xs leading-relaxed">
+              Chennai, Tamil Nadu, India.<br>
+              Autonomous institution accredited with NAAC 'A' Grade, affiliated with Anna University.
+            </p>
+          </div>
+          <div class="space-y-2">
+            <div class="text-xs font-mono uppercase text-apple-subtext">Key Coursework</div>
+            <ul class="text-zinc-300 font-mono text-xs space-y-1">
+              <li>• Data Structures & Analysis</li>
+              <li>• Object-Oriented Software Design</li>
+              <li>• Database Engineering & SQL</li>
+              <li>• Operating Systems & Concurrency</li>
+            </ul>
+          </div>
+          <div class="space-y-2">
+            <div class="text-xs font-mono uppercase text-apple-subtext">Engineering Practice</div>
+            <p class="text-zinc-300 font-mono text-xs leading-relaxed">
+              Building scalable services, exploring low-level database architectures, and participating in coding challenges.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / TERMINAL REACHOUT -->
+    <section id="contact" class="space-y-8">
+      <div class="space-y-2">
+        <div class="text-xs font-mono uppercase tracking-widest text-apple-emerald">Reach Out</div>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Direct Communication</h2>
+        <p class="text-sm text-apple-subtext">Available for software engineering internships, backend architecture, and technical collaboration.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Left: Quick Dispatch Card -->
+        <div class="lg:col-span-5 apple-glass rounded-3xl p-8 border border-white/10 flex flex-col justify-between space-y-6">
+          <div class="space-y-5">
+            <h3 class="text-lg font-bold text-white">Instant Contact Details</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              Prefer direct email? Copy my address with a single tap or reach me through LinkedIn.
+            </p>
+
+            <div class="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-2">
+              <div class="text-[10px] font-mono uppercase text-zinc-500">Official Inbox</div>
+              <div class="text-sm font-mono text-zinc-200 select-all">mail2raamag@gmail.com</div>
+              <button onclick="copyEmailToClipboard()" class="mt-2 w-full py-2 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-white/10 text-xs font-mono text-zinc-200 flex items-center justify-center gap-2 transition-all">
+                <i class="fa-regular fa-copy text-apple-emerald"></i>
+                <span>Copy Email Address</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="text-xs font-mono text-zinc-500 pt-4 border-t border-white/[0.06]">
+            Based in Chennai, India (IST / UTC+5:30)
+          </div>
+        </div>
+
+        <!-- Right: Dispatch Form -->
+        <div class="lg:col-span-7 apple-glass rounded-3xl p-8 border border-white/10">
+          <form onsubmit="handleMailSubmit(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label class="text-xs font-mono text-zinc-400">Name</label>
+                <input type="text" id="contact-name" required placeholder="Alex Vance" 
+                       class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-sm text-white focus:outline-none focus:border-white/30 transition-colors">
+              </div>
+              <div class="space-y-1">
+                <label class="text-xs font-mono text-zinc-400">Your Email</label>
+                <input type="email" id="contact-email" required placeholder="alex@company.com" 
+                       class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-sm text-white focus:outline-none focus:border-white/30 transition-colors">
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs font-mono text-zinc-400">Subject</label>
+              <input type="text" id="contact-subject" required placeholder="Backend Engineering Internship / Discussion" 
+                     class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-sm text-white focus:outline-none focus:border-white/30 transition-colors">
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs font-mono text-zinc-400">Message</label>
+              <textarea id="contact-message" rows="4" required placeholder="Hi Raama Ganesh, I was reviewing your portfolio and wanted to reach out regarding..." 
+                        class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-sm text-white focus:outline-none focus:border-white/30 transition-colors"></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+              <span class="text-[11px] font-mono text-zinc-500">Directly routes to mail2raamag@gmail.com</span>
+              <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-white text-black font-semibold text-xs transition-transform hover:scale-[1.02]">
+                Send Transmission
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FLOATING APPLE DOCK NAVIGATION -->
+  <footer class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
+    <nav aria-label="Quick navigation dock" class="apple-dock px-3 py-2 rounded-full flex items-center gap-1 sm:gap-2">
+      <a href="#hero" class="dock-item px-3 py-1.5 rounded-full hover:bg-white/10 text-xs font-medium text-zinc-300 hover:text-white transition-all flex items-center gap-1.5">
+        <i class="fa-solid fa-house text-[11px]"></i>
+        <span class="hidden sm:inline">Overview</span>
+      </a>
+      <a href="#work" class="dock-item px-3 py-1.5 rounded-full hover:bg-white/10 text-xs font-medium text-zinc-300 hover:text-white transition-all flex items-center gap-1.5">
+        <i class="fa-solid fa-layer-group text-[11px]"></i>
+        <span class="hidden sm:inline">Work</span>
+      </a>
+      <a href="#specs" class="dock-item px-3 py-1.5 rounded-full hover:bg-white/10 text-xs font-medium text-zinc-300 hover:text-white transition-all flex items-center gap-1.5">
+        <i class="fa-solid fa-sliders text-[11px]"></i>
+        <span class="hidden sm:inline">Specs</span>
+      </a>
+      <a href="#education" class="dock-item px-3 py-1.5 rounded-full hover:bg-white/10 text-xs font-medium text-zinc-300 hover:text-white transition-all flex items-center gap-1.5">
+        <i class="fa-solid fa-graduation-cap text-[11px]"></i>
+        <span class="hidden sm:inline">Education</span>
+      </a>
+      <a href="#contact" class="dock-item px-3 py-1.5 rounded-full hover:bg-white/10 text-xs font-medium text-zinc-300 hover:text-white transition-all flex items-center gap-1.5">
+        <i class="fa-regular fa-paper-plane text-[11px]"></i>
+        <span class="hidden sm:inline">Contact</span>
+      </a>
+      <div class="h-4 w-[1px] bg-white/15 mx-1 hidden sm:block"></div>
+      <button onclick="copyEmailToClipboard()" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-mono text-zinc-200 transition-all flex items-center gap-1" title="Copy Email">
+        <i class="fa-regular fa-copy text-[11px] text-apple-emerald"></i>
+        <span class="text-[11px]">Copy</span>
+      </button>
+    </nav>
+  </footer>
+
+  <!-- ARCHITECTURE SPEC INSPECTION MODAL -->
+  <div id="spec-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transition-opacity">
+    <div class="apple-glass max-w-2xl w-full rounded-3xl border border-white/15 p-6 sm:p-8 space-y-6 shadow-2xl relative max-h-[88vh] overflow-y-auto">
+      
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div>
+          <span class="text-[10px] font-mono text-apple-subtext uppercase tracking-widest">Architectural Blueprint</span>
+          <h3 id="modal-title" class="text-xl font-bold text-white mt-0.5">System Specification</h3>
+        </div>
+        <button onclick="closeSpecModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-zinc-400 hover:text-white flex items-center justify-center transition-colors">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <div id="modal-body" class="space-y-4 text-xs font-mono text-zinc-300">
+        <!-- Content injected dynamically via JS -->
+      </div>
+
+      <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+        <span class="text-[11px] font-mono text-zinc-500">Raama Ganesh K • SRM Easwari '29</span>
+        <button onclick="closeSpecModal()" class="px-4 py-2 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-colors">
+          Close Blueprint
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT ENGINE -->
+  <script>
+    // System Specifications Dictionary
+    const specsData = {
+      taskQueue: {
+        title: "Distributed Task Queue & Scheduler Blueprint",
+        body: `
+          <div class="p-4 rounded-2xl bg-zinc-950 border border-white/10 space-y-3">
+            <div class="text-apple-blue font-bold tracking-wider">// SYSTEM EXECUTION TOPOLOGY</div>
+            <div class="text-zinc-300 leading-relaxed font-mono">
+              [API Ingestion Layer] ──> Validates JSON & Generates UUID<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;└──> Pushes task payload to Redis Priority Stream<br>
+              [Worker Cluster] ──> Consumer Groups read with atomic ACK<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;├── Distributed Lock: Redis SET resource_name my_random_value NX PX 30000<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;├── Execution: Thread Pool Executor (Java 21 Virtual Threads / ForkJoin)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;└── Result Store: PostgreSQL audit records via JDBC batching<br>
+              [Fault-Tolerance]: On third failure -> Routed to Dead-Letter Queue (DLQ)
+            </div>
+          </div>
+          <div class="space-y-2 text-zinc-400">
+            <p><strong class="text-zinc-200">Engineering Trade-Off:</strong> Selected Redis Streams over RabbitMQ to maintain a sub-millisecond in-memory queue while minimizing memory overhead on container nodes.</p>
+            <p><strong class="text-zinc-200">Guarantees:</strong> At-least-once task delivery with idempotent execution checks based on client payload hashes.</p>
+          </div>
+        `
+      },
+      kvStore: {
+        title: "Concurrent LSM-Tree Key-Value Engine Blueprint",
+        body: `
+          <div class="p-4 rounded-2xl bg-zinc-950 border border-white/10 space-y-3">
+            <div class="text-apple-emerald font-bold tracking-wider">// LSM-TREE WRITE / READ PATH</div>
+            <div class="text-zinc-300 leading-relaxed font-mono">
+              WRITE PATH:<br>
+              1. Append raw record to disk WAL (Write-Ahead Log) for 0-loss durability<br>
+              2. Insert into active MemTable (Concurrent In-Memory SkipList in C++)<br>
+              3. When MemTable size &gt; 4MB threshold: Freeze -> Make Immutable<br>
+              4. Background worker thread serializes MemTable to Level 0 SSTable on disk<br><br>
+              READ PATH:<br>
+              Active MemTable -> Immutable MemTable -> Bloom Filter Probe -> SSTable Binary Search
+            </div>
+          </div>
+          <div class="space-y-2 text-zinc-400">
+            <p><strong class="text-zinc-200">Key Advantage:</strong> Avoids expensive random disk seek operations by converting all write updates into sequential disk streams.</p>
+            <p><strong class="text-zinc-200">Crash Recovery:</strong> Recovers un-flushed writes upon reboot by sequentially parsing the binary WAL chunk.</p>
+          </div>
+        `
+      },
+      bTreeIndexer: {
+        title: "Relational Indexer & B+ Tree Buffer Manager Blueprint",
+        body: `
+          <div class="p-4 rounded-2xl bg-zinc-950 border border-white/10 space-y-3">
+            <div class="text-purple-400 font-bold tracking-wider">// BUFFER POOL & DISK PAGE MANAGEMENT</div>
+            <div class="text-zinc-300 leading-relaxed font-mono">
+              [Storage Engine Core] ──> Slotted Page Architecture (4,096 bytes / page)<br>
+              [Buffer Pool Manager]: Maintains fixed-size memory pool of frame descriptors<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;├── On Cache Hit: Increment page pin counter & return pointer<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;└── On Cache Miss: Scan frame reference bits via Clock-Sweep Replacement<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── If victim page is dirty: Flush to persistent disk binary<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Read target 4KB page from disk into frame<br>
+              [B+ Tree]: Leaf nodes store key-RID pairs; sibling pointers optimize range queries.
+            </div>
+          </div>
+          <div class="space-y-2 text-zinc-400">
+            <p><strong class="text-zinc-200">Concurrency:</strong> Lock-crabbing protocol across internal and leaf nodes prevents write-deadlocks during concurrent range scans.</p>
+          </div>
+        `
+      },
+      ietPortal: {
+        title: "IET Connect Enterprise Portal Blueprint",
+        body: `
+          <div class="p-4 rounded-2xl bg-zinc-950 border border-white/10 space-y-3">
+            <div class="text-apple-orange font-bold tracking-wider">// ARCHITECTURE & ACCESS CONTROL</div>
+            <div class="text-zinc-300 leading-relaxed font-mono">
+              [Client React Interface] ──HTTPS──> [Node.js Express Gateway]<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;├── Authentication Middleware: Verifies RSA-256 JWT in Authorization Header<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;├── RBAC Authorization: Matches user role against route permission matrix<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;├── Service Controller: Executes parameterized SQL transactions<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;└── Audit Interceptor: Dispatches asynchronous log event to audit_logs table<br>
+              [PostgreSQL Database]: Normalized schema with foreign key constraints & indexing.
+            </div>
+          </div>
+          <div class="space-y-2 text-zinc-400">
+            <p><strong class="text-zinc-200">Security:</strong> Strict sanitization preventing SQL injection, bcrypt password hashing, and role separation (Admin, Lead, Student Member).</p>
+          </div>
+        `
+      }
+    };
+
+    // Apple Dynamic Island Notification Controller
+    let islandTimer = null;
+    function triggerDynamicIsland(text, statusColor = 'bg-apple-emerald') {
+      const island = document.getElementById('dynamic-island');
+      const textElem = document.getElementById('island-text');
+      const dotElem = document.getElementById('island-dot');
+
+      textElem.textContent = text;
+      dotElem.className = `w-2 h-2 rounded-full ${statusColor} animate-pulse`;
+
+      island.classList.remove('opacity-0', '-translate-y-4');
+      island.classList.add('opacity-100', 'translate-y-0');
+
+      if (islandTimer) clearTimeout(islandTimer);
+      islandTimer = setTimeout(() => {
+        island.classList.remove('opacity-100', 'translate-y-0');
+        island.classList.add('opacity-0', '-translate-y-4');
+      }, 3400);
+    }
+
+    // 1-Click Copy Email To Clipboard using execCommand for safe iframe execution
+    function copyEmailToClipboard() {
+      const email = 'mail2raamag@gmail.com';
+      const input = document.createElement('textarea');
+      input.value = email;
+      input.setAttribute('readonly', '');
+      input.style.position = 'absolute';
+      input.style.left = '-9999px';
+      document.body.appendChild(input);
+      input.select();
+
+      try {
+        const success = document.execCommand('copy');
+        if (success) {
+          triggerDynamicIsland('Email Copied: mail2raamag@gmail.com', 'bg-apple-emerald');
+        } else {
+          triggerDynamicIsland('mail2raamag@gmail.com', 'bg-apple-blue');
+        }
+      } catch (err) {
+        triggerDynamicIsland('mail2raamag@gmail.com', 'bg-apple-blue');
+      }
+
+      document.body.removeChild(input);
+    }
+
+    // Direct Mail Transmit Handler
+    function handleMailSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const subject = document.getElementById('contact-subject').value;
+      const message = document.getElementById('contact-message').value;
+
+      const bodyText = `Sender: ${name} (${email})\n\nMessage:\n${message}`;
+      const mailto = `mailto:mail2raamag@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+
+      triggerDynamicIsland('Launching Email Client...', 'bg-apple-blue');
+      window.location.href = mailto;
+    }
+
+    // Spec Modal Controls
+    function openSpecModal(key) {
+      const modal = document.getElementById('spec-modal');
+      const title = document.getElementById('modal-title');
+      const body = document.getElementById('modal-body');
+
+      const data = specsData[key];
+      if (data) {
+        title.textContent = data.title;
+        body.innerHTML = data.body;
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function closeSpecModal() {
+      document.getElementById('spec-modal').classList.add('hidden');
+    }
+
+    // Close on escape key or backdrop click
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSpecModal();
+    });
+
+    document.getElementById('spec-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'spec-modal') closeSpecModal();
+    });
+  </script>
+</body>
+</html>
